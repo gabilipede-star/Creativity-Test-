@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Creativity Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                padding: 40px 20px;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            
+            .no-print {
+                display: none;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        @media (min-width: 768px) {
+            .header {
+                padding: 40px;
+            }
+            
+            .header h1 {
+                font-size: 2.5em;
+            }
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .info-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        @media (min-width: 768px) {
+            .info-bar {
+                flex-direction: row;
+                gap: 20px;
+                padding: 20px 40px;
+            }
+        }
+        
+        .info-field {
+            flex: 1;
+        }
+        
+        .info-field label {
+            display: block;
+            font-size: 0.85em;
+            color: #6c757d;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-field input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #667eea;
+            font-size: 1em;
+            background: transparent;
+        }
+        
+        .info-field input:focus {
+            outline: none;
+            border-bottom-color: #764ba2;
+        }
+        
+        .content {
+            padding: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .content {
+                padding: 40px;
+            }
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .intro h2 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        .intro p {
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .intro ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .intro li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+        
+        .intro li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #ffffff;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        @media (min-width: 768px) {
+            .section {
+                margin-bottom: 50px;
+                padding: 30px;
+            }
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+        
+        .section-title {
+            flex: 1;
+        }
+        
+        .section-title h3 {
+            color: #2d3748;
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        @media (min-width: 768px) {
+            .section-title h3 {
+                font-size: 1.6em;
+            }
+        }
+        
+        .section-title p {
+            color: #718096;
+            font-size: 0.95em;
+        }
+        
+        .prompt-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .prompt-box h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .options {
+            margin: 15px 0;
+        }
+        
+        .option {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: white;
+            border-left: 3px solid #667eea;
+            border-radius: 4px;
+        }
+        
+        .thinking-points {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
+        .thinking-points h5 {
+            color: #d4a017;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        
+        .thinking-points ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .thinking-points li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 6px;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .thinking-points li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #d4a017;
+        }
+        
+        .response-area {
+            margin-top: 20px;
+        }
+        
+        .response-area textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+        
+        .response-area textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .checklist {
+            background: #e6f7ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+        
+        .checklist h4 {
+            color: #0050b3;
+            margin-bottom: 15px;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            color: #718096;
+            font-style: italic;
+        }
+        
+        .print-buttons {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 1000;
+        }
+        
+        @media (min-width: 768px) {
+            .print-buttons {
+                flex-direction: row;
+                top: 20px;
+                right: 20px;
+                gap: 10px;
+            }
+        }
+        
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 768px) {
+            .btn {
+                padding: 12px 24px;
+                font-size: 1em;
+            }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="print-buttons no-print">
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Print</button>
+        <button class="btn btn-primary" onclick="savePDF()">📄 Save as PDF</button>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Creativity Test</h1>
+            <p>An Exploration of Imaginative Thinking and Storytelling</p>
+        </div>
+        
+        <div class="info-bar">
+            <div class="info-field">
+                <label>Name</label>
+                <input type="text" placeholder="Enter your name">
+            </div>
+            <div class="info-field">
+                <label>Date</label>
+                <input type="date">
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>About This Test</h2>
+                <p>This test measures your creative thinking—your ability to imagine new causes and effects in narrative form. You will respond to four creative tasks, each designed to explore different dimensions of imaginative thought.</p>
+                <p>Aim to make your responses:</p>
+                <ul>
+                    <li><strong>Original</strong> — venture beyond everyday scenarios</li>
+                    <li><strong>Internally consistent</strong> — unusual is encouraged, but logic should hold within your story world</li>
+                    <li><strong>Clearly articulated</strong> — express ideas in complete, well-structured sentences</li>
+                </ul>
+                <p>There are no "correct" answers. We're interested in how your imagination works and how effectively you can communicate novel ideas.</p>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">01</div>
+                    <div class="section-title">
+                        <h3>World-Building</h3>
+                        <p>Reimagine the rules of reality</p>
+                    </div>
+                </div>
+                
+                <div class="prompt-box">
+                    <h4>Choose one scenario and write 5–7 sentences exploring what happens next:</h4>
+                    <div class="options">
+                        <div class="option">1. The moon begins to shine brightly during the day</div>
+                        <div class="option">2. Time starts running backward for one hour every night</div>
+                        <div class="option">3. People's dreams begin to appear on public screens where everyone can see them</div>
+                    </div>
+                    
+                    <div class="thinking-points">
+                        <h5>CONSIDER:</h5>
+                        <ul>
+                            <li>What new problems or opportunities might emerge?</li>
+                            <li>How would daily life be transformed?</li>
+                            <li>What new social norms or customs might develop?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="response-area">
+                    <textarea placeholder="Write your response here..."></textarea>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">02</div>
+                    <div class="section-title">
+                        <h3>Perspective-Shifting</h3>
+                        <p>See the world through another's lens</p>
+                    </div>
+                </div>
+                
+                <div class="prompt-box">
+                    <h4>Imagine waking up tomorrow as someone you know well—your best friend, your teacher, or another person in your life.</h4>
+                    <p style="margin-top: 15px; color: #4a5568;"><strong>Question:</strong> How would this person approach a problem you're currently facing? Write 5–7 sentences explaining their thinking and actions.</p>
+                    
+                    <div class="thinking-points">
+                        <h5>EXAMPLE:</h5>
+                        <ul>
+                            <li>"If I were my best friend, I would study in the library instead of my room because she believes that changing her environment helps her focus and prevents distractions."</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="response-area">
+                    <textarea placeholder="Write your response here..."></textarea>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">03</div>
+                    <div class="section-title">
+                        <h3>Action-Generating</h3>
+                        <p>Place a historical or fictional figure in modern Japan</p>
+                    </div>
+                </div>
+                
+                <div class="prompt-box">
+                    <h4>Choose one character and write 5–7 sentences describing what they try to do and what unexpected result occurs:</h4>
+                    <div class="options">
+                        <div class="option"><strong>Albert Einstein</strong> – Theoretical physicist who revolutionized our understanding of space and time</div>
+                        <div class="option"><strong>Frankenstein's Creature</strong> – The intelligent but isolated being from Mary Shelley's classic novel</div>
+                        <div class="option"><strong>Doraemon</strong> – The well-meaning robot cat from the future whose gadgets often backfire</div>
+                        <div class="option"><strong>Oda Nobunaga</strong> – The ambitious daimyō who sought to unify Japan during the Sengoku period</div>
+                        <div class="option"><strong>Miyamoto Musashi</strong> – Legendary swordsman and philosopher from feudal Japan</div>
+                        <div class="option"><strong>Astro Boy (Tetsuwan Atom)</strong> – The compassionate robot hero with extraordinary abilities</div>
+                    </div>
+                    
+                    <div class="thinking-points">
+                        <h5>CONSIDER:</h5>
+                        <ul>
+                            <li>What would this character attempt if they appeared in contemporary Japan?</li>
+                            <li>What aspects of modern life would surprise or confuse them?</li>
+                            <li>What unintended or ironic consequence might result from their actions?</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="response-area">
+                    <textarea placeholder="Write your response here..."></textarea>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">04</div>
+                    <div class="section-title">
+                        <h3>Reflection</h3>
+                        <p>Analyze your creative process</p>
+                    </div>
+                </div>
+                
+                <div class="prompt-box">
+                    <h4>Review your three stories and answer these questions in 3–5 sentences each:</h4>
+                    <p style="margin: 15px 0; color: #4a5568;">1. Which story feels most original or creative to you?</p>
+                    <div class="response-area">
+                        <textarea placeholder="Your response..." style="min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <p style="margin: 15px 0; color: #4a5568;">2. Why do you consider it original?</p>
+                    <div class="response-area">
+                        <textarea placeholder="Your response..." style="min-height: 100px;"></textarea>
+                    </div>
+                    
+                    <p style="margin: 15px 0; color: #4a5568;">3. What new cause-and-effect relationship did you explore in that story?</p>
+                    <div class="response-area">
+                        <textarea placeholder="Your response..." style="min-height: 100px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="checklist">
+                <h4>Before You Submit</h4>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Your name appears at the top of the document</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">All responses are written clearly and legibly</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">You've used complete sentences with proper punctuation</label>
+                </div>
+                <div class="checklist-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">All responses are in your own words</label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Remember: There are no wrong answers—only different ways of imagining.
+        </div>
+    </div>
+    
+    <script>
+        function savePDF() {
+            // Trigger the browser's print dialog which allows saving as PDF
+            window.print();
+            
+            // Show a helpful message
+            setTimeout(() => {
+                if (!window.matchMedia('print').matches) {
+                    alert('💡 Tip: In the print dialog, select "Save as PDF" as your printer destination!');
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
