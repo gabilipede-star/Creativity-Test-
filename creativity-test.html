@@ -309,7 +309,8 @@
             border-radius: 8px;
             font-family: inherit;
             font-size: 1em;
-            resize: vertical;
+            resize: none;
+overflow: hidden;
             transition: border-color 0.3s;
         }
         
@@ -605,5 +606,23 @@
             }, 100);
         }
     </script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textareas = document.querySelectorAll('textarea');
+            
+            textareas.forEach(textarea => {
+                autoResize(textarea);
+                textarea.addEventListener('input', function() {
+                    autoResize(this);
+                });
+            });
+            
+            function autoResize(textarea) {
+                textarea.style.height = 'auto';
+                textarea.style.height = Math.max(textarea.scrollHeight, 180) + 'px';
+            }
+        });
+    </script>
 </body>
+</html></body>
 </html>
